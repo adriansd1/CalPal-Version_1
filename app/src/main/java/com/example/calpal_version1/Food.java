@@ -2,20 +2,20 @@ package com.example.calpal_version1;
 
 import java.util.Objects;
 
-public class food {
+public class Food {
     protected int fat;
     protected int carbs;
     protected int protein;
     protected int calories;
     protected String name;
-    public food(){
+    public Food(){
         this.fat = 0;
         this.carbs = 0;
         this.protein = 0;
         this.calories = 0;
         this.name = new String();
     }
-    public food(int fat, int carbs, int protein, int calories, String name){
+    public Food(int fat, int carbs, int protein, int calories, String name){
         this.fat = fat;
         this.carbs = carbs;
         this.protein = protein;
@@ -57,7 +57,7 @@ public class food {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        food food = (food) o;
+        Food food = (Food) o;
         return fat == food.fat && carbs == food.carbs && protein == food.protein && calories == food.calories && Objects.equals(name, food.name);
     }
     @Override

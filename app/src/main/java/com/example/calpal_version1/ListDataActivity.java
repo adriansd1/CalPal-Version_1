@@ -33,23 +33,36 @@ public class ListDataActivity extends AppCompatActivity {
     private void populateListView() {
         Log.d(DATABASE_NAME, "populateListView: Displaying data in the ListView.");
         Cursor data = myDbHelper.getData();
-        ArrayList<String> listData = new ArrayList<>();
+        ArrayList<String> nameData = new ArrayList<>();
+        ArrayList<Integer> fatData = new ArrayList<>();
+        ArrayList<Food> foodItems = new ArrayList<>();
+
+
         while(data.moveToNext()){
-            listData.add("Food "+ data.getString(0) + ": " + data.getString(4) + "\nFat: " + data.getString(1) +  "\nCarbs: " + data.getString(2) + "\nProtein: " + data.getString(3));
+            //Name
+            String name = data.getString(4);
+            int fat = data.getInt(1);
+            int carbs = data.getInt(2);
+            int protein = data.getInt(3);
+
+            Food foodItem = new Food(fat, carbs, protein, 0, name);
+            foodItems.add(foodItem);
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        CustomAdapter adapter = new CustomAdapter(this, foodItems);
+
         myListView.setAdapter(adapter);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = parent.getItemAtPosition(position).toString();
+                String name = myListView.getItemAtPosition(position).toString();
                 Log.d(DATABASE_NAME, "onItemClick: You clicked " + name);
 
                 Cursor data = myDbHelper.getFoodId(name);
                 int foodID = -1;
                 while(data.moveToNext()){
                     foodID = data.getInt(0);
+                    toastMsg("" + foodID);
                 }
                 if(foodID > -1){
                     Log.d(DATABASE_NAME, "onItemClick: ID: " + foodID);

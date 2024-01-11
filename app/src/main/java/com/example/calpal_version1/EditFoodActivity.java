@@ -36,6 +36,7 @@ public class EditFoodActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String item = editable_Food.getText().toString();
                 if(!item.equals("")){
+                    toastMsg("Food Updated");
                     myDbHelper.updateName(item, selectedID, selectedName);
                 }
                 else{toastMsg("You Must Enter a Food Name");}

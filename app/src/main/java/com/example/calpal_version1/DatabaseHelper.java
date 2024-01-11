@@ -23,18 +23,18 @@ import android.util.Log;
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            String createTable = "CREATE TABLE " + TABLE_NAME +
+            /*String createTable = "CREATE TABLE " + TABLE_NAME +
                     " (" + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL2 + " INTEGER, " +
                     COL3 + " INTEGER, " +
                     COL4 + " INTEGER, " +
-                    COL5 + " VARCHAR)";
-           /*String createTable = "CREATE TABLE " + TABLE_NAME +
-                    " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL2 + " INTEGER, " +
-                    COL3 + " INTEGER, " +
-                    COL4 + " INTEGER, " +
                     COL5 + " VARCHAR)";*/
+           String createTable = "CREATE TABLE " + TABLE_NAME +
+                    " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL2 + " INT, " +
+                    COL3 + " INT, " +
+                    COL4 + " INT, " +
+                    COL5 + " TEXT)";
             db.execSQL(createTable);
         }
 
